@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?> 
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" 
+ "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd"> 
+
+<taglib> 
+  <tlibversion>0.1</tlibversion> 
+  <jspversion>1.2</jspversion> 
+  <shortname>ical</shortname> 
+  <uri>http://franchu.net/ical-taglib</uri> 
+  <info> 
+    A tag library based on the ical4j code that eases the creation of ical compliant code from JSP. 
+  </info> 
+  <tag> 
+    <name>calendar</name> 
+    <tagclass>net.franchu.taglib.ical.CalendarTag</tagclass> 
+    <info>Initialises the calendar structure</info> 
+    <bodycontent>JSP</bodycontent> 
+    <attribute> 
+      <name>ProgId</name> 
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue> 
+    </attribute> 
+  </tag> 
+  <tag> 
+    <name>event</name> 
+    <tagclass>net.franchu.taglib.ical.EventTag</tagclass> 
+    <info>Initialises the event structure</info> 
+    <bodycontent>JSP</bodycontent> 
+  </tag>
+  <tag> 
+    <name>uid</name> 
+    <tagclass>net.franchu.taglib.ical.UidTag</tagclass> 
+    <info>Sets up the UID of the event</info> 
+    <bodycontent>JSP</bodycontent> 
+  </tag>
+  <tag> 
+    <name>datestart</name> 
+    <tagclass>net.franchu.taglib.ical.DateStartTag</tagclass> 
+    <info>Start date of the event</info> 
+    <bodycontent>JSP</bodycontent> 
+    <attribute> 
+      <name>format</name> 
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute> 
+    <attribute> 
+      <name>timezone</name> 
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue> 
+    </attribute> 
+  </tag> 
+  <tag> 
+    <name>dateend</name> 
+    <tagclass>net.franchu.taglib.ical.DateEndTag</tagclass> 
+    <info>End date of the event</info> 
+    <bodycontent>JSP</bodycontent> 
+    <attribute> 
+      <name>format</name> 
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue> 
+    </attribute> 
+    <attribute> 
+      <name>timezone</name> 
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>g
+    </attribute> 
+  </tag>
+  <tag> 
+    <name>summary</name> 
+    <tagclass>net.franchu.taglib.ical.SummaryTag</tagclass> 
+    <info>Summary of the event</info> 
+    <bodycontent>JSP</bodycontent> 
+  </tag> 
+  <tag> 
+    <name>description</name> 
+    <tagclass>net.franchu.taglib.ical.DescriptionTag</tagclass> 
+    <info>Description of the event</info> 
+    <bodycontent>JSP</bodycontent> 
+  </tag> 
+  <tag> 
+    <name>location</name> 
+    <tagclass>net.franchu.taglib.ical.LocationTag</tagclass> 
+    <info>Location of the event</info> 
+    <bodycontent>JSP</bodycontent> 
+  </tag> 
+</taglib> 
+   
