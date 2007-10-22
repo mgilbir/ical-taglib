@@ -6,10 +6,12 @@ package net.franchu.taglib.ical;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
 import java.io.*;
+import java.util.jar.Attributes.Name;
 
 import net.fortuna.ical4j.*;
 import net.fortuna.ical4j.data.CalendarOutputter;
 import net.fortuna.ical4j.model.Calendar;
+import net.fortuna.ical4j.model.Property;
 import net.fortuna.ical4j.model.ValidationException;
 import net.fortuna.ical4j.model.property.*;
 
@@ -25,17 +27,33 @@ public class CalendarTag extends BodyTagSupport{
 	Calendar calendar;
 	String strProdId = "-//Miguel Gil Biraud//ical-taglib 0.1//based on iCal4j 1.0//EN//";
 	String UID;
+	String title = null;
+	String description = null;
 	
 	public void setProdId(String strProdId)
     {
         this.strProdId = strProdId;
     }
 	
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
+	
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+	
 	public int doStartTag() throws JspTagException 
 	{
 		calendar = new Calendar();
 		calendar.getProperties().add(new ProdId(strProdId));
 		calendar.getProperties().add(Version.VERSION_2_0);
+		if(title!=null)
+			calendar.getProperties().add(new XProperty("X-WR-CALNAME",title));
+		if(description!=null)
+			calendar.getProperties().add(new XProperty("X-WR-CALDESC",description));
 		
 		//TODO: Add the CalScale value as a parameter
 		calendar.getProperties().add(CalScale.GREGORIAN);
