@@ -3,7 +3,7 @@
  "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd"> 
 
 <taglib> 
-  <tlibversion>0.1</tlibversion> 
+  <tlibversion>0.2</tlibversion> 
   <jspversion>1.2</jspversion> 
   <shortname>ical</shortname> 
   <uri>http://franchu.net/ical-taglib</uri> 
@@ -20,6 +20,16 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue> 
     </attribute> 
+    <attribute> 
+      <name>title</name> 
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue> 
+    </attribute>
+    <attribute> 
+      <name>description</name> 
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue> 
+    </attribute>  
   </tag> 
   <tag> 
     <name>event</name> 
@@ -48,6 +58,11 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue> 
     </attribute> 
+    <attribute>
+    	<name>value</name>
+    	<required>false</required>
+    	<rtexprvalue>true</rtexprvalue>
+    </attribute>
   </tag> 
   <tag> 
     <name>dateend</name> 
@@ -59,18 +74,33 @@
       <required>false</required>
       <rtexprvalue>true</rtexprvalue> 
     </attribute> 
-    <attribute> 
-      <name>timezone</name> 
-      <required>false</required>
-      <rtexprvalue>true</rtexprvalue>g
-    </attribute> 
+    <attribute>
+    	<name>timezone</name>
+    	<required>false</required>
+    	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+    	<name>value</name>
+    	<required>false</required>
+    	<rtexprvalue>true</rtexprvalue>
+    </attribute>
   </tag>
   <tag> 
     <name>summary</name> 
     <tagclass>net.franchu.taglib.ical.SummaryTag</tagclass> 
     <info>Summary of the event</info> 
     <bodycontent>JSP</bodycontent> 
-  </tag> 
+  </tag>
+  <tag>
+    <name>organizer</name>
+    <tagclass>net.franchu.taglib.ical.OrganizerTag</tagclass>
+    <info>Organizer(s) of the event</info><bodycontent>JSP</bodycontent>
+    <attribute>
+    	<name>name</name>
+    	<required>false</required>
+    	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
   <tag> 
     <name>description</name> 
     <tagclass>net.franchu.taglib.ical.DescriptionTag</tagclass> 
