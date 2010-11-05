@@ -10,21 +10,17 @@ import net.fortuna.ical4j.model.property.Uid;
 
 /**
  * @author mgilbir
- *
+ * 
  */
-public class UidTag extends EventBodyTag
-{
-	void ProcessBody(String body) throws JspTagException
-	{
-		try
-		{
+public class UidTag extends EventBodyTag {
+	void ProcessBody(String body) throws JspTagException {
+		try {
+			body = body.trim();
 			VEvent event = parent.event;
-		
-			Uid uid = new Uid(body); 
+
+			Uid uid = new Uid(body);
 			event.getProperties().add(uid);
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			throw new JspTagException(e);
 		}
 	}
