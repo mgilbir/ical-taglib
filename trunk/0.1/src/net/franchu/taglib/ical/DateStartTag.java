@@ -1,16 +1,10 @@
 package net.franchu.taglib.ical;
 
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
-
-import com.sun.org.apache.bcel.internal.generic.Select;
-
-import java.io.*;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import net.fortuna.ical4j.*;
+import javax.servlet.jsp.JspTagException;
+
 import net.fortuna.ical4j.model.Date;
 import net.fortuna.ical4j.model.DateTime;
 import net.fortuna.ical4j.model.Property;

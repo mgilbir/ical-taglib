@@ -3,11 +3,9 @@
  */
 package net.franchu.taglib.ical;
 
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
-import java.io.*;
-import net.fortuna.ical4j.*;
-import net.fortuna.ical4j.model.Calendar;
+import javax.servlet.jsp.JspTagException;
+import javax.servlet.jsp.tagext.BodyTagSupport;
+
 import net.fortuna.ical4j.model.component.VEvent;
 /**
  * @author mgilbir
