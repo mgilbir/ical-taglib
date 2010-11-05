@@ -3,21 +3,17 @@
  */
 package net.franchu.taglib.ical;
 
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
-import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import net.fortuna.ical4j.*;
+import javax.servlet.jsp.JspTagException;
+
 import net.fortuna.ical4j.model.Date;
 import net.fortuna.ical4j.model.DateTime;
 import net.fortuna.ical4j.model.Property;
 import net.fortuna.ical4j.model.component.VEvent;
-import net.fortuna.ical4j.model.parameter.Cn;
 import net.fortuna.ical4j.model.parameter.Value;
 import net.fortuna.ical4j.model.property.DtEnd;
-import net.fortuna.ical4j.model.property.DtStart;
 
 /**
  * @author mgilbir

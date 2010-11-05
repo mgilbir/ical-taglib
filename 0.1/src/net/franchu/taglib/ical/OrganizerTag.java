@@ -3,13 +3,10 @@
  */
 package net.franchu.taglib.ical;
 
-import javax.servlet.jsp.*;
-import javax.servlet.jsp.tagext.*;
-import java.io.*;
 import java.net.URISyntaxException;
 
-import net.fortuna.ical4j.*;
-import net.fortuna.ical4j.model.Calendar;
+import javax.servlet.jsp.JspTagException;
+
 import net.fortuna.ical4j.model.Property;
 import net.fortuna.ical4j.model.component.VEvent;
 import net.fortuna.ical4j.model.parameter.Cn;
