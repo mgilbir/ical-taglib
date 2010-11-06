@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.franchu.taglib.ical;
 
 import java.net.URISyntaxException;
@@ -18,15 +15,17 @@ import net.fortuna.ical4j.model.property.Organizer;
  */
 public class OrganizerTag extends EventBodyTag {
 
+	private static final long serialVersionUID = 7308034078212280423L;
 	private String name = null;
 
-	public void setName(String name) {
-		this.name = name;
+	public final void setName(final String theName) {
+		this.name = theName;
 	}
 
-	void ProcessBody(String body) throws JspTagException {
-		body = body.trim();
-		VEvent event = parent.event;
+	@Override
+	final void processBody(final String theBody) throws JspTagException {
+		final String body = theBody.trim();
+		VEvent event = parent.getEvent();
 		// Organizer organizer = new Organizer(body);
 		Organizer organizer;
 		try {

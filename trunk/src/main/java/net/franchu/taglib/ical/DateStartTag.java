@@ -14,19 +14,21 @@ import net.fortuna.ical4j.model.property.DtStart;
 
 public class DateStartTag extends EventBodyTag {
 
+	private static final long serialVersionUID = -4799283279562104011L;
+
 	private String format = "yyyy-MM-dd'T'HH:mm:ss";
 	private String timezone = null;
 	private Value value = Value.DATE_TIME;
 
-	public void setFormat(String format) {
-		this.format = format;
+	public final void setFormat(final String theFormat) {
+		this.format = theFormat;
 	}
 
-	public void setTimezone(String timezone) {
-		this.timezone = timezone;
+	public final void setTimezone(final String theTimezone) {
+		this.timezone = theTimezone;
 	}
 
-	public void setValue(String value) throws JspTagException {
+	public final void setValue(String value) throws JspTagException {
 		if (value.toLowerCase().equals("date")) {
 			this.value = Value.DATE;
 		} else if (value.toLowerCase().equals("date-time")) {
@@ -37,8 +39,9 @@ public class DateStartTag extends EventBodyTag {
 		}
 	}
 
-	void ProcessBody(String body) throws JspTagException {
-		body = body.trim();
+	@Override
+	final void processBody(final String theBody) throws JspTagException {
+		final String body = theBody.trim();
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		DtStart start = new DtStart();
 		Calendar calendar = Calendar.getInstance();
@@ -57,7 +60,7 @@ public class DateStartTag extends EventBodyTag {
 					+ e.getMessage());
 		}
 
-		VEvent event = parent.event;
+		VEvent event = parent.getEvent();
 		event.getProperties().add(start);
 		event.getProperties().getProperty(Property.DTSTART).getParameters()
 				.add(this.value);
