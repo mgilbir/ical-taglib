@@ -13,9 +13,12 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class EventBodyTag extends BodyTagSupport {
 
-	EventTag parent;
+	private static final long serialVersionUID = -852816112785222647L;
 
-	public int doStartTag() throws JspTagException {
+	protected EventTag parent;
+
+	@Override
+	public final int doStartTag() throws JspTagException {
 		parent = (EventTag) findAncestorWithClass(this, EventTag.class);
 		if (parent == null) {
 			throw new JspTagException("nesting error");
@@ -27,9 +30,12 @@ public class EventBodyTag extends BodyTagSupport {
 		 * BodyTagSupport.class); if(temp != null) { throw new
 		 * JspTagException("nesting error"); }
 		 */
-		return (EVAL_BODY_TAG);
+		
+		//TODO: Check that this is the correct return value. Alternative is EVAL_BODY_BUFFERED
+		return (EVAL_BODY_AGAIN);
 	}
 
+	@Override
 	public int doAfterBody() throws JspTagException {
 		BodyContent bc = getBodyContent();
 		String body;
@@ -37,7 +43,7 @@ public class EventBodyTag extends BodyTagSupport {
 			// Do the data handling
 			body = bc.getString();
 			bc.clearBody();
-			ProcessBody(body);
+			processBody(body);
 
 		} catch (Exception e) {
 			throw new JspTagException("Tag " + this.getClass().getName() + ": "
@@ -46,7 +52,7 @@ public class EventBodyTag extends BodyTagSupport {
 		return SKIP_BODY;
 	}
 
-	void ProcessBody(String body) throws JspTagException {
+	void processBody(final String body) throws JspTagException {
 		throw new JspTagException("Method Overriding not working");
 	}
 

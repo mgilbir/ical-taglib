@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.franchu.taglib.ical;
 
 import javax.servlet.jsp.JspTagException;
@@ -13,22 +10,36 @@ import net.fortuna.ical4j.model.component.VEvent;
  * 
  */
 public class EventTag extends BodyTagSupport {
-	CalendarTag parent;
-	VEvent event;
 
-	public int doStartTag() throws JspTagException {
+	private static final long serialVersionUID = 8745557389271841073L;
+	private CalendarTag parent;
+	private VEvent event;
+
+	@Override
+	public final int doStartTag() throws JspTagException {
 		parent = (CalendarTag) findAncestorWithClass(this, CalendarTag.class);
 		if (parent == null) {
 			throw new JspTagException("nesting error");
 		}
 
-		event = new VEvent();
-		return (EVAL_BODY_TAG);
+		setEvent(new VEvent());
+
+		//TODO: Check that this is the correct return value. Alternative is EVAL_BODY_BUFFERED
+		return (EVAL_BODY_AGAIN);
 	}
 
-	public int doEndTag() throws JspTagException {
-		parent.calendar.getComponents().add(event);
+	@Override
+	public final int doEndTag() throws JspTagException {
+		parent.getCalendar().getComponents().add(getEvent());
 		return SKIP_BODY;
+	}
+
+	public void setEvent(final VEvent theEvent) {
+		this.event = theEvent;
+	}
+
+	public VEvent getEvent() {
+		return event;
 	}
 
 }

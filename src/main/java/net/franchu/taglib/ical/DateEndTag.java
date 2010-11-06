@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.franchu.taglib.ical;
 
 import java.text.SimpleDateFormat;
@@ -21,19 +18,21 @@ import net.fortuna.ical4j.model.property.DtEnd;
  */
 public class DateEndTag extends EventBodyTag {
 
+	private static final long serialVersionUID = 2133450057865108519L;
+	
 	private String format = "yyyy-MM-dd'T'HH:mm:ss";
 	private String timezone = null;
 	private Value value = Value.DATE_TIME;
 
-	public void setFormat(String format) {
-		this.format = format;
+	public final void setFormat(final String theFormat) {
+		this.format = theFormat;
 	}
 
-	public void setTimezone(String timezone) {
-		this.timezone = timezone;
+	public final void setTimezone(final String theTimezone) {
+		this.timezone = theTimezone;
 	}
 
-	public void setValue(String value) throws JspTagException {
+	public final void setValue(String value) throws JspTagException {
 		if (value.toLowerCase().equals("date")) {
 			this.value = Value.DATE;
 		} else if (value.toLowerCase().equals("date-time")) {
@@ -44,8 +43,9 @@ public class DateEndTag extends EventBodyTag {
 		}
 	}
 
-	void ProcessBody(String body) throws JspTagException {
-		body = body.trim();
+	@Override
+	final void processBody(final String theBody) throws JspTagException {
+		final String body = theBody.trim();
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		DtEnd end = new DtEnd();
 		Calendar calendar = Calendar.getInstance();
@@ -64,10 +64,10 @@ public class DateEndTag extends EventBodyTag {
 					+ e.getMessage());
 		}
 
-		VEvent event = parent.event;
+		VEvent event = parent.getEvent();
 		event.getProperties().add(end);
-		event.getProperties().getProperty(Property.DTEND).getParameters().add(
-				this.value);
+		event.getProperties().getProperty(Property.DTEND).getParameters()
+				.add(this.value);
 		// throw new JspTagException("Testing: " + end.getValue());
 	}
 }

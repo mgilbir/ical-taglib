@@ -1,6 +1,3 @@
-/**
- * 
- */
 package net.franchu.taglib.ical;
 
 import javax.servlet.jsp.JspTagException;
@@ -13,10 +10,14 @@ import net.fortuna.ical4j.model.property.Uid;
  * 
  */
 public class UidTag extends EventBodyTag {
-	void ProcessBody(String body) throws JspTagException {
+
+	private static final long serialVersionUID = 5895757437858636964L;
+
+	@Override
+	final void processBody(final String theBody) throws JspTagException {
 		try {
-			body = body.trim();
-			VEvent event = parent.event;
+			final String body = theBody.trim();
+			VEvent event = parent.getEvent();
 
 			Uid uid = new Uid(body);
 			event.getProperties().add(uid);
