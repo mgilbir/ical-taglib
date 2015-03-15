@@ -1,0 +1,1 @@
+Based on the ical4j library by Ben Fortuna, this taglib tries to ease the creation of iCal compatible files to be served dynamically from a java application server.
